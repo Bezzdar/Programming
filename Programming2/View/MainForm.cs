@@ -17,6 +17,11 @@ namespace Programming2
         public MainForm()
         {
             InitializeComponent();
+            // 
+            // Initialize ComboBoxSeasons
+            // 
+            object[] values = Enum.GetValues(typeof(Seasons)).Cast<object>().ToArray();
+            ComboBoxSeason.Items.AddRange(values);
         }
 
         private void EnumListBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -61,6 +66,40 @@ namespace Programming2
             }
             value = default;
             return false;
+        }
+
+        private void ButtonGoSeson_Click(object sender, EventArgs e)
+        {
+            if (ComboBoxSeason.SelectedItem == null)
+            {
+                ComboBoxSeason.BackColor = System.Drawing.Color.Red;
+                return;
+            }
+
+            ComboBoxSeason.BackColor = System.Drawing.Color.White;
+            switch (ComboBoxSeason.SelectedItem)
+            {
+                case Seasons.Summer:
+                    MessageBox.Show("Ура! Солнце!");
+                    break;
+                case Seasons.Autumn:
+                    BackgroundColor(ColorTranslator.FromHtml("#e29c45"));
+                    break;
+                case Seasons.Winter:
+                    MessageBox.Show("Бррр! Холодно!");
+                    break;
+                case Seasons.Spring:
+                    BackgroundColor(ColorTranslator.FromHtml("#559c45"));
+                    break;
+            }
+        }
+
+        private void BackgroundColor(System.Drawing.Color color)
+        {
+            EnumBox.BackColor = color;
+            WeekdayBox.BackColor = color;
+            SeasonBox.BackColor = color;
+            this.BackColor = color;
         }
     }
 }

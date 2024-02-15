@@ -30,6 +30,10 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.TabPageEnums = new System.Windows.Forms.TabPage();
+            this.SeasonBox = new System.Windows.Forms.GroupBox();
+            this.ButtonGoSeson = new System.Windows.Forms.Button();
+            this.ComboBoxSeason = new System.Windows.Forms.ComboBox();
+            this.LabelSeason = new System.Windows.Forms.Label();
             this.WeekdayBox = new System.Windows.Forms.GroupBox();
             this.LabelParse = new System.Windows.Forms.Label();
             this.ButtonParse = new System.Windows.Forms.Button();
@@ -44,6 +48,7 @@
             this.EnumListBox = new System.Windows.Forms.ListBox();
             this.tabControl1.SuspendLayout();
             this.TabPageEnums.SuspendLayout();
+            this.SeasonBox.SuspendLayout();
             this.WeekdayBox.SuspendLayout();
             this.EnumBox.SuspendLayout();
             this.SuspendLayout();
@@ -60,6 +65,7 @@
             // 
             // TabPageEnums
             // 
+            this.TabPageEnums.Controls.Add(this.SeasonBox);
             this.TabPageEnums.Controls.Add(this.WeekdayBox);
             this.TabPageEnums.Controls.Add(this.EnumBox);
             this.TabPageEnums.Location = new System.Drawing.Point(4, 22);
@@ -70,6 +76,45 @@
             this.TabPageEnums.Text = "Enums";
             this.TabPageEnums.UseVisualStyleBackColor = true;
             // 
+            // SeasonBox
+            // 
+            this.SeasonBox.Controls.Add(this.ButtonGoSeson);
+            this.SeasonBox.Controls.Add(this.ComboBoxSeason);
+            this.SeasonBox.Controls.Add(this.LabelSeason);
+            this.SeasonBox.Location = new System.Drawing.Point(411, 220);
+            this.SeasonBox.Name = "SeasonBox";
+            this.SeasonBox.Size = new System.Drawing.Size(373, 165);
+            this.SeasonBox.TabIndex = 9;
+            this.SeasonBox.TabStop = false;
+            this.SeasonBox.Text = "Season Handle";
+            // 
+            // ButtonGoSeson
+            // 
+            this.ButtonGoSeson.Location = new System.Drawing.Point(133, 40);
+            this.ButtonGoSeson.Name = "ButtonGoSeson";
+            this.ButtonGoSeson.Size = new System.Drawing.Size(75, 23);
+            this.ButtonGoSeson.TabIndex = 2;
+            this.ButtonGoSeson.Text = "Go!";
+            this.ButtonGoSeson.UseVisualStyleBackColor = true;
+            this.ButtonGoSeson.Click += new System.EventHandler(this.ButtonGoSeson_Click);
+            // 
+            // ComboBoxSeason
+            // 
+            this.ComboBoxSeason.FormattingEnabled = true;
+            this.ComboBoxSeason.Location = new System.Drawing.Point(6, 41);
+            this.ComboBoxSeason.Name = "ComboBoxSeason";
+            this.ComboBoxSeason.Size = new System.Drawing.Size(121, 21);
+            this.ComboBoxSeason.TabIndex = 1;
+            // 
+            // LabelSeason
+            // 
+            this.LabelSeason.AutoSize = true;
+            this.LabelSeason.Location = new System.Drawing.Point(6, 26);
+            this.LabelSeason.Name = "LabelSeason";
+            this.LabelSeason.Size = new System.Drawing.Size(83, 13);
+            this.LabelSeason.TabIndex = 0;
+            this.LabelSeason.Text = "Choose season:";
+            // 
             // WeekdayBox
             // 
             this.WeekdayBox.Controls.Add(this.LabelParse);
@@ -78,7 +123,7 @@
             this.WeekdayBox.Controls.Add(this.label1);
             this.WeekdayBox.Location = new System.Drawing.Point(8, 220);
             this.WeekdayBox.Name = "WeekdayBox";
-            this.WeekdayBox.Size = new System.Drawing.Size(776, 165);
+            this.WeekdayBox.Size = new System.Drawing.Size(373, 165);
             this.WeekdayBox.TabIndex = 6;
             this.WeekdayBox.TabStop = false;
             this.WeekdayBox.Text = "Weekday Parsing";
@@ -201,6 +246,8 @@
             this.Text = "Form1";
             this.tabControl1.ResumeLayout(false);
             this.TabPageEnums.ResumeLayout(false);
+            this.SeasonBox.ResumeLayout(false);
+            this.SeasonBox.PerformLayout();
             this.WeekdayBox.ResumeLayout(false);
             this.WeekdayBox.PerformLayout();
             this.EnumBox.ResumeLayout(false);
@@ -225,6 +272,10 @@
         private System.Windows.Forms.TextBox TextBoxWeekday;
         private System.Windows.Forms.Label LabelParse;
         private System.Windows.Forms.Button ButtonParse;
+        private System.Windows.Forms.GroupBox SeasonBox;
+        private System.Windows.Forms.Label LabelSeason;
+        private System.Windows.Forms.Button ButtonGoSeson;
+        private System.Windows.Forms.ComboBox ComboBoxSeason;
     }
 }
 
