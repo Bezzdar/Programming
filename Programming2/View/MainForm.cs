@@ -96,9 +96,7 @@ namespace Programming2
 
         private void BackgroundColor(System.Drawing.Color color)
         {
-            EnumBox.BackColor = color;
-            WeekdayBox.BackColor = color;
-            SeasonBox.BackColor = color;
+            TabPageEnums.BackColor = color;
             this.BackColor = color;
         }
     }
