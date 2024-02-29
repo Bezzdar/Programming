@@ -47,6 +47,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Model\Colors.cs" />
+    <Compile Include="Model\Flight.cs" />
+    <Compile Include="Model\Rectangle.cs" />
     <Compile Include="Model\FormOfEducation.cs" />
     <Compile Include="Model\Genre.cs" />
     <Compile Include="Model\Seasons.cs" />
