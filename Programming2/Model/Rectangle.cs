@@ -1,12 +1,11 @@
 ﻿using System;
-using System.Drawing;
 
 class Rectangle
 {
     int _length;
     int _width;
 
-    public Color Color { get; set; }   
+    public Colors Color { get; set; }   
 
     public int Length
     {
@@ -31,13 +30,18 @@ class Rectangle
     {
         Length = 15;
         Width = 30;
-        Color = Color.Green;
+        Color = Colors.Green;
     }
 
-    public Rectangle(int length, int width, Color color)
+    public Rectangle(int length, int width, Colors color)
     {
         Length = length;
         Width = width;
         Color = color;
+    }
+
+    public override string ToString()
+    {
+        return $"Rectangle {Length}x{Width}";
     }
 }

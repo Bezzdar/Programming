@@ -56,7 +56,11 @@ class Contact
         }
 
 
-    public string Adress { get; set; }
+    public string Adress 
+    {
+        get { return _adress; }
+        set { _adress  = value; }
+    }
 
 
     public Contact()

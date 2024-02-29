@@ -6,7 +6,7 @@ class Movie
     string _name;
     int _duration;
     int _releaseYear;
-    string _genre;
+    public Genre Genre { get; set; }
     double _rating;
 
     public string Name
@@ -43,14 +43,10 @@ class Movie
             {
                 throw new ArgumentException("Films were not released until 1895!");
             }
-            _duration = value;
+            _releaseYear = value;
         }
     }
-    public string Genre
-    {
-        get { return _genre; }
-        set { _genre = value; }
-    }
+    
 
     public double Rating
     {
@@ -70,10 +66,10 @@ class Movie
         Name = "Drive";
         Duration = 100;
         ReleaseYear = 2011;
-        Genre = "action movie";
+        Genre = Genre.Action;
     }
 
-    public Movie(string name, int duration, int releaseyear, string genre, double rating)
+    public Movie(string name, int duration, int releaseyear, Genre genre, double rating)
     {
         Name = name;
         Duration = duration;
