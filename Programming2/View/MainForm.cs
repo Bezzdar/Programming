@@ -12,6 +12,8 @@ namespace Programming2
 {
     public partial class MainForm : Form
     {
+        Rectangle[] _rectangles = new Rectangle[5];
+        Rectangle _currentRectangle = new Rectangle();
         Type[] typeModel = new Type[6] { typeof(Colors), typeof(FormOfEducation), typeof(Genre), typeof(Manufacturers), typeof(Seasons), typeof(Weekday) };
 
         public MainForm()
@@ -22,6 +24,11 @@ namespace Programming2
             // 
             object[] values = Enum.GetValues(typeof(Seasons)).Cast<object>().ToArray();
             ComboBoxSeason.Items.AddRange(values);
+            for (int i  = 0; i<5; i++)
+            {
+
+            }
+
         }
 
         private void EnumListBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -99,5 +106,6 @@ namespace Programming2
             TabPageEnums.BackColor = color;
             this.BackColor = color;
         }
+
     }
 }

@@ -46,16 +46,27 @@
             this.ChooseValueLabel = new System.Windows.Forms.Label();
             this.ChooseEnumLabel = new System.Windows.Forms.Label();
             this.EnumListBox = new System.Windows.Forms.ListBox();
+            this.TabPageClasses = new System.Windows.Forms.TabPage();
+            this.labelRectangels = new System.Windows.Forms.Label();
+            this.ClassesRectanglesListBox = new System.Windows.Forms.ListBox();
+            this.labelLength = new System.Windows.Forms.Label();
+            this.textBoxLength = new System.Windows.Forms.TextBox();
+            this.labelWidth = new System.Windows.Forms.Label();
+            this.textBoxWidth = new System.Windows.Forms.TextBox();
+            this.labelColor = new System.Windows.Forms.Label();
+            this.textBoxColor = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.TabPageEnums.SuspendLayout();
             this.SeasonBox.SuspendLayout();
             this.WeekdayBox.SuspendLayout();
             this.EnumBox.SuspendLayout();
+            this.TabPageClasses.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.TabPageEnums);
+            this.tabControl1.Controls.Add(this.TabPageClasses);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
@@ -236,6 +247,89 @@
             this.EnumListBox.TabIndex = 0;
             this.EnumListBox.SelectedIndexChanged += new System.EventHandler(this.EnumListBox_SelectedIndexChanged);
             // 
+            // TabPageClasses
+            // 
+            this.TabPageClasses.Controls.Add(this.textBoxColor);
+            this.TabPageClasses.Controls.Add(this.labelColor);
+            this.TabPageClasses.Controls.Add(this.textBoxWidth);
+            this.TabPageClasses.Controls.Add(this.labelWidth);
+            this.TabPageClasses.Controls.Add(this.textBoxLength);
+            this.TabPageClasses.Controls.Add(this.labelLength);
+            this.TabPageClasses.Controls.Add(this.ClassesRectanglesListBox);
+            this.TabPageClasses.Controls.Add(this.labelRectangels);
+            this.TabPageClasses.Location = new System.Drawing.Point(4, 22);
+            this.TabPageClasses.Name = "TabPageClasses";
+            this.TabPageClasses.Padding = new System.Windows.Forms.Padding(3);
+            this.TabPageClasses.Size = new System.Drawing.Size(792, 424);
+            this.TabPageClasses.TabIndex = 1;
+            this.TabPageClasses.Text = "Classes";
+            this.TabPageClasses.UseVisualStyleBackColor = true;
+            // 
+            // labelRectangels
+            // 
+            this.labelRectangels.AutoSize = true;
+            this.labelRectangels.Location = new System.Drawing.Point(8, 8);
+            this.labelRectangels.Name = "labelRectangels";
+            this.labelRectangels.Size = new System.Drawing.Size(61, 13);
+            this.labelRectangels.TabIndex = 0;
+            this.labelRectangels.Text = "Rectangles";
+            // 
+            // ClassesRectanglesListBox
+            // 
+            this.ClassesRectanglesListBox.FormattingEnabled = true;
+            this.ClassesRectanglesListBox.Location = new System.Drawing.Point(11, 24);
+            this.ClassesRectanglesListBox.Name = "ClassesRectanglesListBox";
+            this.ClassesRectanglesListBox.Size = new System.Drawing.Size(120, 147);
+            this.ClassesRectanglesListBox.TabIndex = 1;
+            // 
+            // labelLength
+            // 
+            this.labelLength.AutoSize = true;
+            this.labelLength.Location = new System.Drawing.Point(137, 24);
+            this.labelLength.Name = "labelLength";
+            this.labelLength.Size = new System.Drawing.Size(40, 13);
+            this.labelLength.TabIndex = 2;
+            this.labelLength.Text = "Length";
+            // 
+            // textBoxLength
+            // 
+            this.textBoxLength.Location = new System.Drawing.Point(140, 40);
+            this.textBoxLength.Name = "textBoxLength";
+            this.textBoxLength.Size = new System.Drawing.Size(100, 20);
+            this.textBoxLength.TabIndex = 3;
+            // 
+            // labelWidth
+            // 
+            this.labelWidth.AutoSize = true;
+            this.labelWidth.Location = new System.Drawing.Point(137, 63);
+            this.labelWidth.Name = "labelWidth";
+            this.labelWidth.Size = new System.Drawing.Size(35, 13);
+            this.labelWidth.TabIndex = 4;
+            this.labelWidth.Text = "Width";
+            // 
+            // textBoxWidth
+            // 
+            this.textBoxWidth.Location = new System.Drawing.Point(140, 79);
+            this.textBoxWidth.Name = "textBoxWidth";
+            this.textBoxWidth.Size = new System.Drawing.Size(100, 20);
+            this.textBoxWidth.TabIndex = 5;
+            // 
+            // labelColor
+            // 
+            this.labelColor.AutoSize = true;
+            this.labelColor.Location = new System.Drawing.Point(137, 102);
+            this.labelColor.Name = "labelColor";
+            this.labelColor.Size = new System.Drawing.Size(31, 13);
+            this.labelColor.TabIndex = 6;
+            this.labelColor.Text = "Color";
+            // 
+            // textBoxColor
+            // 
+            this.textBoxColor.Location = new System.Drawing.Point(140, 118);
+            this.textBoxColor.Name = "textBoxColor";
+            this.textBoxColor.Size = new System.Drawing.Size(100, 20);
+            this.textBoxColor.TabIndex = 7;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -252,6 +346,8 @@
             this.WeekdayBox.PerformLayout();
             this.EnumBox.ResumeLayout(false);
             this.EnumBox.PerformLayout();
+            this.TabPageClasses.ResumeLayout(false);
+            this.TabPageClasses.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -276,6 +372,15 @@
         private System.Windows.Forms.Label LabelSeason;
         private System.Windows.Forms.Button ButtonGoSeson;
         private System.Windows.Forms.ComboBox ComboBoxSeason;
+        private System.Windows.Forms.TabPage TabPageClasses;
+        private System.Windows.Forms.Label labelRectangels;
+        private System.Windows.Forms.Label labelLength;
+        private System.Windows.Forms.ListBox ClassesRectanglesListBox;
+        private System.Windows.Forms.Label labelColor;
+        private System.Windows.Forms.TextBox textBoxWidth;
+        private System.Windows.Forms.Label labelWidth;
+        private System.Windows.Forms.TextBox textBoxLength;
+        private System.Windows.Forms.TextBox textBoxColor;
     }
 }
 

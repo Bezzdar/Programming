@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Drawing;
-using System.Reflection;
-using System.Security.Cryptography;
 
 class Rectangle
 {
     int _length;
     int _width;
 
-    public Color  Color { get; set; }   
+    public Color Color { get; set; }   
 
     public int Length
     {
