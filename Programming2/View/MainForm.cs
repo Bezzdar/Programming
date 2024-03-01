@@ -36,7 +36,7 @@ namespace Programming2
                 }
                 
                 string[] listBoxMoviesItems = new string[5];
-                string[] movieTitles = new string[5] { "Первый", "Второй", "Третий", "Четвёртый", "Пятый" };
+                string[] movieTitles = new string[5] { "Гарри Поттер", "Драйв", "Игра престолов", "Шерлок", "Зеленая книга" };
                 for (int i = 0; i < 5; i++)
                 {
                     int durationMinutes = random.Next(60, 280);
