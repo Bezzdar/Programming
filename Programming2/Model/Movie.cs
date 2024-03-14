@@ -39,7 +39,7 @@ class Movie
         get { return _releaseYear; }
         set
         {
-            if (value < 1895)
+            if (value < 1895 || value > DateTime.Now.Year)
             {
                 throw new ArgumentException("Films were not released until 1895!");
             }
