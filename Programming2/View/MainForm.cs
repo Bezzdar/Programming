@@ -14,7 +14,7 @@ namespace Programming2
     public partial class MainForm : Form
     {
         Rectangle[] _rectangles = new Rectangle[5];
-        Rectangle _currentRectangle = new Rectangle();
+        Rectangle _currentRectangle;
         Movie[] _movies = new Movie[5];
         Movie _currentMovie = new Movie();
         Type[] typeModel = new Type[6] { typeof(Colors), typeof(FormOfEducation), typeof(Genre), typeof(Manufacturers), typeof(Seasons), typeof(Weekday) };
@@ -30,11 +30,10 @@ namespace Programming2
                 Random random = new Random();
                 for (int i  = 0; i<5; i++)
                 {
-                    Rectangle rectangle = new Rectangle(random.Next(6, 51), random.Next(3, 50), Colors.Green);
-                    _rectangles[i] = rectangle;
-                    ClassesRectanglesListBox.Items.Add(rectangle);
+                    _rectangles[i] = new Rectangle(random.Next(6, 51), random.Next(3, 50), Colors.Green);
                 }
-                
+                ClassesRectanglesListBox.Items.AddRange(_rectangles);
+
                 string[] listBoxMoviesItems = new string[5];
                 string[] movieTitles = new string[5] { "Гарри Поттер", "Драйв", "Игра престолов", "Шерлок", "Зеленая книга" };
                 for (int i = 0; i < 5; i++)
@@ -131,9 +130,12 @@ namespace Programming2
             if (ClassesRectanglesListBox.SelectedIndex == -1) return;
             _currentRectangle = _rectangles[ClassesRectanglesListBox.SelectedIndex];
             Rectangle rectangle = (Rectangle)ClassesRectanglesListBox.SelectedItem;
-            textBoxLength.Text = rectangle.Length.ToString();
+            textBoxLength.Text = rectangle.Height.ToString();
             textBoxWidth.Text = rectangle.Width.ToString();
             textBoxColor.Text = rectangle.Color.ToString();
+            MidXTextBox.Text = rectangle.Center.X.ToString();
+            MidYTextBox.Text = rectangle.Center.Y.ToString();
+            IdTextBox.Text = rectangle.Id.ToString();
         }
 
         private void textBoxLength_TextChanged(object sender, EventArgs e)
@@ -145,7 +147,7 @@ namespace Programming2
             {
                 textBoxLength.BackColor = System.Drawing.Color.White;
                 int length = int.Parse(textBoxLength.Text);
-                _currentRectangle.Length = length;
+                _currentRectangle.Height = length;
             }
             catch (Exception)
             {
@@ -293,6 +295,11 @@ namespace Programming2
             }
             return MaxRateIndex;
 
+        }
+
+        private void TextBoxDisable(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = true;
         }
     }
 }

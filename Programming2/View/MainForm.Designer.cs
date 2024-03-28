@@ -47,6 +47,13 @@
             this.ChooseEnumLabel = new System.Windows.Forms.Label();
             this.EnumListBox = new System.Windows.Forms.ListBox();
             this.TabPageClasses = new System.Windows.Forms.TabPage();
+            this.MidYTextBox = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.MidXTextBox = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.buttonFindRating = new System.Windows.Forms.Button();
+            this.textBoxRating = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.textBoxGenre = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.textBoxRelease = new System.Windows.Forms.TextBox();
@@ -67,9 +74,8 @@
             this.labelLength = new System.Windows.Forms.Label();
             this.ClassesRectanglesListBox = new System.Windows.Forms.ListBox();
             this.labelRectangels = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.textBoxRating = new System.Windows.Forms.TextBox();
-            this.buttonFindRating = new System.Windows.Forms.Button();
+            this.IdTextBox = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.TabPageEnums.SuspendLayout();
             this.SeasonBox.SuspendLayout();
@@ -264,6 +270,12 @@
             // 
             // TabPageClasses
             // 
+            this.TabPageClasses.Controls.Add(this.IdTextBox);
+            this.TabPageClasses.Controls.Add(this.label11);
+            this.TabPageClasses.Controls.Add(this.MidYTextBox);
+            this.TabPageClasses.Controls.Add(this.label10);
+            this.TabPageClasses.Controls.Add(this.MidXTextBox);
+            this.TabPageClasses.Controls.Add(this.label9);
             this.TabPageClasses.Controls.Add(this.buttonFindRating);
             this.TabPageClasses.Controls.Add(this.textBoxRating);
             this.TabPageClasses.Controls.Add(this.label8);
@@ -294,6 +306,69 @@
             this.TabPageClasses.TabIndex = 1;
             this.TabPageClasses.Text = "Classes";
             this.TabPageClasses.UseVisualStyleBackColor = true;
+            // 
+            // MidYTextBox
+            // 
+            this.MidYTextBox.Enabled = false;
+            this.MidYTextBox.Location = new System.Drawing.Point(288, 196);
+            this.MidYTextBox.Name = "MidYTextBox";
+            this.MidYTextBox.Size = new System.Drawing.Size(100, 20);
+            this.MidYTextBox.TabIndex = 26;
+            this.MidYTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBoxDisable);
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(285, 180);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(48, 13);
+            this.label10.TabIndex = 25;
+            this.label10.Text = "Middle Y";
+            // 
+            // MidXTextBox
+            // 
+            this.MidXTextBox.Enabled = false;
+            this.MidXTextBox.Location = new System.Drawing.Point(288, 157);
+            this.MidXTextBox.Name = "MidXTextBox";
+            this.MidXTextBox.Size = new System.Drawing.Size(100, 20);
+            this.MidXTextBox.TabIndex = 24;
+            this.MidXTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBoxDisable);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(285, 141);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(48, 13);
+            this.label9.TabIndex = 23;
+            this.label9.Text = "Middle X";
+            // 
+            // buttonFindRating
+            // 
+            this.buttonFindRating.Location = new System.Drawing.Point(627, 366);
+            this.buttonFindRating.Name = "buttonFindRating";
+            this.buttonFindRating.Size = new System.Drawing.Size(97, 39);
+            this.buttonFindRating.TabIndex = 22;
+            this.buttonFindRating.Text = "Find";
+            this.buttonFindRating.UseVisualStyleBackColor = true;
+            this.buttonFindRating.Click += new System.EventHandler(this.buttonFindRating_Click);
+            // 
+            // textBoxRating
+            // 
+            this.textBoxRating.Location = new System.Drawing.Point(621, 196);
+            this.textBoxRating.Name = "textBoxRating";
+            this.textBoxRating.Size = new System.Drawing.Size(100, 20);
+            this.textBoxRating.TabIndex = 21;
+            this.textBoxRating.TextChanged += new System.EventHandler(this.textBoxRating_TextChanged);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(622, 180);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(38, 13);
+            this.label8.TabIndex = 20;
+            this.label8.Text = "Rating";
             // 
             // textBoxGenre
             // 
@@ -467,32 +542,23 @@
             this.labelRectangels.Size = new System.Drawing.Size(0, 13);
             this.labelRectangels.TabIndex = 0;
             // 
-            // label8
+            // IdTextBox
             // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(622, 180);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(38, 13);
-            this.label8.TabIndex = 20;
-            this.label8.Text = "Rating";
+            this.IdTextBox.Enabled = false;
+            this.IdTextBox.Location = new System.Drawing.Point(288, 235);
+            this.IdTextBox.Name = "IdTextBox";
+            this.IdTextBox.Size = new System.Drawing.Size(100, 20);
+            this.IdTextBox.TabIndex = 28;
+            this.IdTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBoxDisable);
             // 
-            // textBoxRating
+            // label11
             // 
-            this.textBoxRating.Location = new System.Drawing.Point(621, 196);
-            this.textBoxRating.Name = "textBoxRating";
-            this.textBoxRating.Size = new System.Drawing.Size(100, 20);
-            this.textBoxRating.TabIndex = 21;
-            this.textBoxRating.TextChanged += new System.EventHandler(this.textBoxRating_TextChanged);
-            // 
-            // buttonFindRating
-            // 
-            this.buttonFindRating.Location = new System.Drawing.Point(627, 366);
-            this.buttonFindRating.Name = "buttonFindRating";
-            this.buttonFindRating.Size = new System.Drawing.Size(97, 39);
-            this.buttonFindRating.TabIndex = 22;
-            this.buttonFindRating.Text = "Find";
-            this.buttonFindRating.UseVisualStyleBackColor = true;
-            this.buttonFindRating.Click += new System.EventHandler(this.buttonFindRating_Click);
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(285, 219);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(16, 13);
+            this.label11.TabIndex = 27;
+            this.label11.Text = "Id";
             // 
             // MainForm
             // 
@@ -560,6 +626,12 @@
         private System.Windows.Forms.TextBox textBoxRating;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button buttonFindRating;
+        private System.Windows.Forms.TextBox MidYTextBox;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.TextBox MidXTextBox;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox IdTextBox;
+        private System.Windows.Forms.Label label11;
     }
 }
 
