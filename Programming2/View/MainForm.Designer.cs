@@ -47,6 +47,8 @@
             this.ChooseEnumLabel = new System.Windows.Forms.Label();
             this.EnumListBox = new System.Windows.Forms.ListBox();
             this.TabPageClasses = new System.Windows.Forms.TabPage();
+            this.IdTextBox = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
             this.MidYTextBox = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.MidXTextBox = new System.Windows.Forms.TextBox();
@@ -66,16 +68,14 @@
             this.ClassiesMovieListBox = new System.Windows.Forms.ListBox();
             this.FindButtonRectangle = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBoxColor = new System.Windows.Forms.TextBox();
+            this.ColorTextBoxColor = new System.Windows.Forms.TextBox();
             this.labelColor = new System.Windows.Forms.Label();
-            this.textBoxWidth = new System.Windows.Forms.TextBox();
+            this.WidthTextBox = new System.Windows.Forms.TextBox();
             this.labelWidth = new System.Windows.Forms.Label();
-            this.textBoxLength = new System.Windows.Forms.TextBox();
+            this.LengthTextBox = new System.Windows.Forms.TextBox();
             this.labelLength = new System.Windows.Forms.Label();
             this.ClassesRectanglesListBox = new System.Windows.Forms.ListBox();
             this.labelRectangels = new System.Windows.Forms.Label();
-            this.IdTextBox = new System.Windows.Forms.TextBox();
-            this.label11 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.TabPageEnums.SuspendLayout();
             this.SeasonBox.SuspendLayout();
@@ -291,11 +291,11 @@
             this.TabPageClasses.Controls.Add(this.ClassiesMovieListBox);
             this.TabPageClasses.Controls.Add(this.FindButtonRectangle);
             this.TabPageClasses.Controls.Add(this.label2);
-            this.TabPageClasses.Controls.Add(this.textBoxColor);
+            this.TabPageClasses.Controls.Add(this.ColorTextBoxColor);
             this.TabPageClasses.Controls.Add(this.labelColor);
-            this.TabPageClasses.Controls.Add(this.textBoxWidth);
+            this.TabPageClasses.Controls.Add(this.WidthTextBox);
             this.TabPageClasses.Controls.Add(this.labelWidth);
-            this.TabPageClasses.Controls.Add(this.textBoxLength);
+            this.TabPageClasses.Controls.Add(this.LengthTextBox);
             this.TabPageClasses.Controls.Add(this.labelLength);
             this.TabPageClasses.Controls.Add(this.ClassesRectanglesListBox);
             this.TabPageClasses.Controls.Add(this.labelRectangels);
@@ -306,6 +306,24 @@
             this.TabPageClasses.TabIndex = 1;
             this.TabPageClasses.Text = "Classes";
             this.TabPageClasses.UseVisualStyleBackColor = true;
+            // 
+            // IdTextBox
+            // 
+            this.IdTextBox.Enabled = false;
+            this.IdTextBox.Location = new System.Drawing.Point(288, 235);
+            this.IdTextBox.Name = "IdTextBox";
+            this.IdTextBox.Size = new System.Drawing.Size(100, 20);
+            this.IdTextBox.TabIndex = 28;
+            this.IdTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBoxDisable);
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(285, 219);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(16, 13);
+            this.label11.TabIndex = 27;
+            this.label11.Text = "Id";
             // 
             // MidYTextBox
             // 
@@ -475,12 +493,12 @@
             this.label2.TabIndex = 8;
             this.label2.Text = "Rectangles";
             // 
-            // textBoxColor
+            // ColorTextBoxColor
             // 
-            this.textBoxColor.Location = new System.Drawing.Point(288, 118);
-            this.textBoxColor.Name = "textBoxColor";
-            this.textBoxColor.Size = new System.Drawing.Size(100, 20);
-            this.textBoxColor.TabIndex = 7;
+            this.ColorTextBoxColor.Location = new System.Drawing.Point(288, 118);
+            this.ColorTextBoxColor.Name = "ColorTextBoxColor";
+            this.ColorTextBoxColor.Size = new System.Drawing.Size(100, 20);
+            this.ColorTextBoxColor.TabIndex = 7;
             // 
             // labelColor
             // 
@@ -491,13 +509,13 @@
             this.labelColor.TabIndex = 6;
             this.labelColor.Text = "Color";
             // 
-            // textBoxWidth
+            // WidthTextBox
             // 
-            this.textBoxWidth.Location = new System.Drawing.Point(288, 79);
-            this.textBoxWidth.Name = "textBoxWidth";
-            this.textBoxWidth.Size = new System.Drawing.Size(100, 20);
-            this.textBoxWidth.TabIndex = 5;
-            this.textBoxWidth.TextChanged += new System.EventHandler(this.textBoxWidth_TextChanged);
+            this.WidthTextBox.Location = new System.Drawing.Point(288, 79);
+            this.WidthTextBox.Name = "WidthTextBox";
+            this.WidthTextBox.Size = new System.Drawing.Size(100, 20);
+            this.WidthTextBox.TabIndex = 5;
+            this.WidthTextBox.TextChanged += new System.EventHandler(this.textBoxWidth_TextChanged);
             // 
             // labelWidth
             // 
@@ -508,13 +526,13 @@
             this.labelWidth.TabIndex = 4;
             this.labelWidth.Text = "Width";
             // 
-            // textBoxLength
+            // LengthTextBox
             // 
-            this.textBoxLength.Location = new System.Drawing.Point(288, 40);
-            this.textBoxLength.Name = "textBoxLength";
-            this.textBoxLength.Size = new System.Drawing.Size(100, 20);
-            this.textBoxLength.TabIndex = 3;
-            this.textBoxLength.TextChanged += new System.EventHandler(this.textBoxLength_TextChanged);
+            this.LengthTextBox.Location = new System.Drawing.Point(288, 40);
+            this.LengthTextBox.Name = "LengthTextBox";
+            this.LengthTextBox.Size = new System.Drawing.Size(100, 20);
+            this.LengthTextBox.TabIndex = 3;
+            this.LengthTextBox.TextChanged += new System.EventHandler(this.textBoxLength_TextChanged);
             // 
             // labelLength
             // 
@@ -541,24 +559,6 @@
             this.labelRectangels.Name = "labelRectangels";
             this.labelRectangels.Size = new System.Drawing.Size(0, 13);
             this.labelRectangels.TabIndex = 0;
-            // 
-            // IdTextBox
-            // 
-            this.IdTextBox.Enabled = false;
-            this.IdTextBox.Location = new System.Drawing.Point(288, 235);
-            this.IdTextBox.Name = "IdTextBox";
-            this.IdTextBox.Size = new System.Drawing.Size(100, 20);
-            this.IdTextBox.TabIndex = 28;
-            this.IdTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBoxDisable);
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(285, 219);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(16, 13);
-            this.label11.TabIndex = 27;
-            this.label11.Text = "Id";
             // 
             // MainForm
             // 
@@ -607,10 +607,10 @@
         private System.Windows.Forms.Label labelLength;
         private System.Windows.Forms.ListBox ClassesRectanglesListBox;
         private System.Windows.Forms.Label labelColor;
-        private System.Windows.Forms.TextBox textBoxWidth;
+        private System.Windows.Forms.TextBox WidthTextBox;
         private System.Windows.Forms.Label labelWidth;
-        private System.Windows.Forms.TextBox textBoxLength;
-        private System.Windows.Forms.TextBox textBoxColor;
+        private System.Windows.Forms.TextBox LengthTextBox;
+        private System.Windows.Forms.TextBox ColorTextBoxColor;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button FindButtonRectangle;
         private System.Windows.Forms.Label label3;

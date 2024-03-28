@@ -130,9 +130,9 @@ namespace Programming2
             if (ClassesRectanglesListBox.SelectedIndex == -1) return;
             _currentRectangle = _rectangles[ClassesRectanglesListBox.SelectedIndex];
             Rectangle rectangle = (Rectangle)ClassesRectanglesListBox.SelectedItem;
-            textBoxLength.Text = rectangle.Height.ToString();
-            textBoxWidth.Text = rectangle.Width.ToString();
-            textBoxColor.Text = rectangle.Color.ToString();
+            LengthTextBox.Text = rectangle.Height.ToString();
+            WidthTextBox.Text = rectangle.Width.ToString();
+            ColorTextBoxColor.Text = rectangle.Color.ToString();
             MidXTextBox.Text = rectangle.Center.X.ToString();
             MidYTextBox.Text = rectangle.Center.Y.ToString();
             IdTextBox.Text = rectangle.Id.ToString();
@@ -145,13 +145,13 @@ namespace Programming2
             ClassesRectanglesListBox.Items.Insert(index, _currentRectangle);
             try
             {
-                textBoxLength.BackColor = System.Drawing.Color.White;
-                int length = int.Parse(textBoxLength.Text);
+                LengthTextBox.BackColor = System.Drawing.Color.White;
+                int length = int.Parse(LengthTextBox.Text);
                 _currentRectangle.Height = length;
             }
             catch (Exception)
             {
-                textBoxLength.BackColor = System.Drawing.Color.LightPink;
+                LengthTextBox.BackColor = System.Drawing.Color.LightPink;
             }
         }
 
@@ -163,13 +163,13 @@ namespace Programming2
         
             try
             {
-                textBoxWidth.BackColor = System.Drawing.Color.White;
-                int width = int.Parse(textBoxWidth.Text);
+                WidthTextBox.BackColor = System.Drawing.Color.White;
+                int width = int.Parse(WidthTextBox.Text);
                 _currentRectangle.Width = width;
             }
             catch (Exception)
             {
-                textBoxWidth.BackColor = System.Drawing.Color.LightPink;
+                WidthTextBox.BackColor = System.Drawing.Color.LightPink;
             }
         }
         private int FindRectangleWithMaxWidth(Rectangle[] rectangles)
