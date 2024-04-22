@@ -1,8 +1,6 @@
-﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -24,5 +22,12 @@ class CollisionManager
         double hypotenuse = Math.Sqrt(Math.Pow(Math.Abs(ring1.Center.X - ring2.Center.X), 2) + Math.Pow(Math.Abs(ring1.Center.Y - ring2.Center.Y), 2));
         double sumOfExternalRadii = ring1.ExternalRadius + ring2.ExternalRadius;
         return hypotenuse < sumOfExternalRadii;
+    }
+}
+
+class Huy
+{
+    Huy() {
+        CollisionManager.IsCollision();
     }
 }

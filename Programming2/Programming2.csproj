@@ -46,11 +46,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\Enums\AppColors.cs" />
     <Compile Include="Model\Enums\Colors.cs" />
     <Compile Include="Model\Contact.cs" />
     <Compile Include="Model\Discipline.cs" />
     <Compile Include="Model\Flight.cs" />
+    <Compile Include="Model\Geometry\CollisionManager.cs" />
+    <Compile Include="Model\Geometry\CustomMethods.cs" />
     <Compile Include="Model\Geometry\Point2D.cs" />
+    <Compile Include="Model\Geometry\RectangleFactory.cs" />
+    <Compile Include="Model\Geometry\Ring.cs" />
     <Compile Include="Model\Movie.cs" />
     <Compile Include="Model\Geometry\Rectangle.cs" />
     <Compile Include="Model\Enums\FormOfEducation.cs" />
