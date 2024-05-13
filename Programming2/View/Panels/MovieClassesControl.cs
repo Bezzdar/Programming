@@ -10,11 +10,18 @@ using System.Windows.Forms;
 
 namespace Programming2.View.Panels
 {
+
+    /// <summary>
+    /// Представляет элемент управления для работы с фильмами.
+    /// </summary>
     public partial class MovieClassesControl : UserControl
     {
         Movie[] _movies = new Movie[5];
         Movie _currentMovie = new Movie();
-        
+
+        /// <summary>
+        /// Инициализирует новый экземпляр класса MovieClassesControl.
+        /// </summary>
         public MovieClassesControl()
         {
             InitializeComponent();
@@ -36,6 +43,9 @@ namespace Programming2.View.Panels
             ClassiesMovieListBox.Items.AddRange(listBoxMoviesItems);
         }
 
+        /// <summary>
+        /// Обработчик события изменения выбранного элемента в списке фильмов.
+        /// </summary>
         private void ClassiesMovieListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (ClassiesMovieListBox.SelectedIndex == -1) return;
@@ -123,6 +133,12 @@ namespace Programming2.View.Panels
             double MovieMaxRateIndex = FindMovieMaxRate(_movies);
             ClassiesMovieListBox.SelectedIndex = (int)MovieMaxRateIndex;
         }
+
+        /// <summary>
+        /// Находит индекс фильма с максимальным рейтингом.
+        /// </summary>
+        /// <param name="_movies">Массив фильмов.</param>
+        /// <returns>Индекс фильма с максимальным рейтингом.</returns>
         private int FindMovieMaxRate(Movie[] _movies)
         {
             double MaxRate = _movies[0].Rating;
@@ -139,11 +155,22 @@ namespace Programming2.View.Panels
 
         }
 
+        /// <summary>
+        /// Обработчик события ввода текста в текстовое поле.
+        /// Запрещает ввод текста.
+        /// </summary>
         private void TextBoxDisable(object sender, KeyPressEventArgs e)
         {
             e.Handled = true;
         }
 
+        /// <summary>
+        /// Пытается получить значение перечисления по строковому представлению.
+        /// </summary>
+        /// <typeparam name="T">Тип перечисления.</typeparam>
+        /// <param name="itemName">Строковое представление элемента перечисления.</param>
+        /// <param name="value">Значение элемента перечисления.</param>
+        /// <returns>Значение true, если удалось получить значение перечисления, иначе - false.</returns>
         static public bool TryGetEnumValue<T>(string itemName, out T value) where T : struct
         {
             if (Enum.TryParse<T>(itemName, true, out value))

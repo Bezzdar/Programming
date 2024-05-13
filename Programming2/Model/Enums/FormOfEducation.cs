@@ -1,3 +1,6 @@
+/// <summary>
+/// Перечесление форм обучения.
+/// </summary>
 public enum FormOfEducation
 {
 	FullTime,

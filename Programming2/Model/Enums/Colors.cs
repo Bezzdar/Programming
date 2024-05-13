@@ -1,5 +1,7 @@
 
-
+/// <summary>
+/// Перечисление цветов.
+/// </summary>
 public enum Colors
 {
     Red,

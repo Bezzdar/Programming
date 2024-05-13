@@ -1,3 +1,7 @@
+
+/// <summary>
+/// Перечисление дней недели.
+/// </summary>
 public enum Weekday
 {
     Sunday,

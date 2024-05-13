@@ -1,5 +1,8 @@
 ﻿using System;
 
+/// <summary>
+/// Представляет дисциплину.
+/// </summary>
 class Discipline
 {
     string _disciplineName;
@@ -44,6 +47,9 @@ class Discipline
         }
     }
 
+    /// <summary>
+    /// Инициализирует новый экземпляр класса Discipline с параметрами по умолчанию.
+    /// </summary>
     public Discipline()
     {
         DisciplineName = "Programming";
@@ -52,6 +58,13 @@ class Discipline
         Instructor = "Goryainov Alexander Evgenievich";
     }
 
+    /// <summary>
+    /// Инициализирует новый экземпляр класса Discipline с указанными параметрами.
+    /// </summary>
+    /// <param name="disciplineName">Название дисциплины.</param>
+    /// <param name="grade">Оценка по дисциплине.</param>
+    /// <param name="semester">Семестр, в котором изучается дисциплина.</param>
+    /// <param name="instructor">Преподаватель дисциплины.</param>
     public Discipline(string disciplineName, int grade, int semester, string instructor)
     {
         DisciplineName = disciplineName;

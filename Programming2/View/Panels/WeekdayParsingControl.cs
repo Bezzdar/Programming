@@ -10,13 +10,24 @@ using System.Windows.Forms;
 
 namespace Programming2.View.Panels
 {
+
+    /// <summary>
+    /// Представляет элемент управления для разбора дня недели.
+    /// </summary>
     public partial class WeekdayParsingControl : UserControl
     {
+
+        /// <summary>
+        /// Инициализирует новый экземпляр класса WeekdayParsingControl.
+        /// </summary>
         public WeekdayParsingControl()
         {
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Обработчик нажатия кнопки для разбора дня недели.
+        /// </summary>
         private void ButtonParse_Click(object sender, EventArgs e)
         {
             string selectedItemName = TextBoxWeekday.Text;
@@ -34,6 +45,13 @@ namespace Programming2.View.Panels
             }
         }
 
+        /// <summary>
+        /// Пытается получить значение перечисления по его имени.
+        /// </summary>
+        /// <typeparam name="T">Тип перечисления.</typeparam>
+        /// <param name="itemName">Имя элемента перечисления.</param>
+        /// <param name="value">Возвращаемое значение.</param>
+        /// <returns>True, если значение успешно получено, иначе false.</returns>
         static public bool TryGetEnumValue<T>(string itemName, out T value) where T : struct
         {
             if (Enum.TryParse<T>(itemName, true, out value))

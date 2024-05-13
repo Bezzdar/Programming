@@ -1,3 +1,7 @@
+
+/// <summary>
+/// Перечисление жанров кино.
+/// </summary>
 public enum Genre
 {
     Comedy,

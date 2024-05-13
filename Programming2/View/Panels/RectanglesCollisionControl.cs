@@ -10,6 +10,10 @@ using System.Windows.Forms;
 
 namespace Programming2.View.Panels
 {
+
+    /// <summary>
+    /// Представляет элемент управления для обнаружения коллизий между прямоугольниками.
+    /// </summary>
     public partial class RectanglesCollisionControl : UserControl
     {
         bool _isProgrammaticChange = false;
@@ -18,6 +22,9 @@ namespace Programming2.View.Panels
         List<Panel> _rectanglePanels;
         List<Rectangle> _rectangles;
 
+        /// <summary>
+        /// Инициализирует новый экземпляр класса RectanglesCollisionControl.
+        /// </summary>
         public RectanglesCollisionControl()
         {
             InitializeComponent();
@@ -79,14 +86,6 @@ namespace Programming2.View.Panels
 
         private void RectanglesListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //if (RectanglesListBox.SelectedIndex == -1) return;
-            //_currentRectangle = _rectangles[RectanglesListBox.SelectedIndex];
-            //Rectangle rectangle = (Rectangle)RectanglesListBox.SelectedItem;
-            //TextBoxHeight.Text = rectangle.Height.ToString();
-            //TextBoxRectanglesWidth.Text = rectangle.Width.ToString();
-            //TextBoxX.Text = rectangle.Center.X.ToString();
-            //TextBoxY.Text = rectangle.Center.Y.ToString();
-            //TextBoxID.Text = rectangle.Id.ToString();
             if (RectanglesListBox.SelectedItem == null) return;
             _currentRectangle = (Rectangle)RectanglesListBox.SelectedItem;
             UpdateRectangleInfo(_currentRectangle, RectanglesListBox.SelectedIndex);
@@ -212,6 +211,11 @@ namespace Programming2.View.Panels
             }
         }
 
+        /// <summary>
+        /// Обновляет информацию о прямоугольнике в соответствующих текстовых полях.
+        /// </summary>
+        /// <param name="rectangle">Прямоугольник для обновления информации.</param>
+        /// <param name="selectedIndex">Индекс выбранного прямоугольника в списке.</param>
         void UpdateRectangleInfo(Rectangle rectangle, int selectedIndex)
         {
             _isProgrammaticChange = true;
@@ -224,6 +228,11 @@ namespace Programming2.View.Panels
             _isProgrammaticChange = false;
         }
 
+        /// <summary>
+        /// Создает панель для отображения прямоугольника на форме.
+        /// </summary>
+        /// <param name="rectangle">Прямоугольник для отображения.</param>
+        /// <returns>Панель с отображаемым прямоугольником.</returns>
         Panel InitialPanel(Rectangle rectangle)
         {
             Panel panel = new Panel();
@@ -233,6 +242,9 @@ namespace Programming2.View.Panels
             return panel;
         }
 
+        /// <summary>
+        /// Очищает информацию о прямоугольнике из текстовых полей.
+        /// </summary>
         void ClearRectangleInfo()
         {
             foreach (TextBox tb in CustomMethods.TextBoxRectangles)

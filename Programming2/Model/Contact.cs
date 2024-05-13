@@ -3,6 +3,9 @@ using System.Globalization;
 using System.Text.RegularExpressions;
 using System.Diagnostics;
 
+/// <summary>
+/// Представляет контакт.
+/// </summary>
 class Contact
 {
     string _name;
@@ -60,6 +63,9 @@ class Contact
         }
     }
 
+    /// <summary>
+    /// Инициализирует новый экземпляр класса Contact с параметрами по умолчанию.
+    /// </summary>
     public Contact()
     {
         Name = "Name";
@@ -70,6 +76,15 @@ class Contact
         Birthday = new DateTime(1962, 4, 21);
     }
 
+    /// <summary>
+    /// Инициализирует новый экземпляр класса Contact с указанными параметрами.
+    /// </summary>
+    /// <param name="name">Имя контакта.</param>
+    /// <param name="surname">Фамилия контакта.</param>
+    /// <param name="organization">Организация контакта.</param>
+    /// <param name="phoneNumber">Номер телефона контакта.</param>
+    /// <param name="email">Электронная почта контакта.</param>
+    /// <param name="birthday">День рождения контакта.</param>
     public Contact(string name, string surname, string organization, string phoneNumber, string email, DateTime birthday)
     {
         Name = name;
@@ -80,6 +95,11 @@ class Contact
         Birthday = birthday;
     }
 
+    /// <summary>
+    /// Проверяет валидность электронной почты.
+    /// </summary>
+    /// <param name="email">Электронная почта для проверки.</param>
+    /// <returns>Значение true, если почта валидна, иначе - false.</returns>
     // https://learn.microsoft.com/ru-ru/dotnet/standard/base-types/how-to-verify-that-strings-are-in-valid-email-format
     public static bool IsValidEmail(string email)
     {
@@ -125,6 +145,10 @@ class Contact
         }
     }
 
+    /// <summary>
+    /// Проверяет, что строка состоит только из букв английского алфавита.
+    /// </summary>
+    /// <param name="value">Строка для проверки.</param>
     private void AssertStringContainsOnlyLetters(string value)
     {
         if (Regex.IsMatch(value, "^[a-zA-Z]*$"))

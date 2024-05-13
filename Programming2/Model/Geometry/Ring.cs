@@ -1,11 +1,21 @@
 using System;
 
+/// <summary>
+/// Представляет кольцо.
+/// </summary>
 class Ring
 {
+
+    /// <summary>
+    /// Центр кольца.
+    /// </summary>
     public Point2D Center { get; }
     double _internalRadius;
     double _externalRadius;
 
+    /// <summary>
+    /// Внутренний радиус кольца.
+    /// </summary>
     public double InternalRadius
     {
         get { return _internalRadius; }
@@ -16,6 +26,10 @@ class Ring
             _internalRadius = value;
         }
     }
+
+    /// <summary>
+    /// Внешний радиус кольца.
+    /// </summary>
     public double ExternalRadius
     {
         get { return _externalRadius; }
@@ -26,8 +40,17 @@ class Ring
             _externalRadius = value;
         }
     }
+
+    /// <summary>
+    /// Площадь кольца.
+    /// </summary>
     public double Area => Math.PI * Math.Pow(_externalRadius, 2) - Math.PI * Math.Pow(_internalRadius, 2);
 
+    /// <summary>
+    /// Инициализирует новый экземпляр класса Ring с указанными радиусами.
+    /// </summary>
+    /// <param name="internalRadius">Внутренний радиус кольца.</param>
+    /// <param name="externalRadius">Внешний радиус кольца.</param>
     public Ring(double internalRadius, double externalRadius)
     {
         InternalRadius = internalRadius;
