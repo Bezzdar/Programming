@@ -5,6 +5,8 @@ VisualStudioVersion = 17.7.34031.279
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsFormsApp1", "WindowsFormsApp1.csproj", "{D1E657DD-96A1-4C02-A9DA-A3EE9B6DD81F}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "SongStorageSetup", "..\SongStorageSetup\SongStorageSetup.vdproj", "{1E9AEA60-2385-43F6-A855-84E282B8A7C5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,8 @@ Global
 		{D1E657DD-96A1-4C02-A9DA-A3EE9B6DD81F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D1E657DD-96A1-4C02-A9DA-A3EE9B6DD81F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D1E657DD-96A1-4C02-A9DA-A3EE9B6DD81F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1E9AEA60-2385-43F6-A855-84E282B8A7C5}.Debug|Any CPU.ActiveCfg = Debug
+		{1E9AEA60-2385-43F6-A855-84E282B8A7C5}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
