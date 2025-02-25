@@ -6,43 +6,49 @@ using System.Threading.Tasks;
 
 namespace View.Model
 {
-    class Contact
+    /// <summary>
+    /// Класс, представляющий контакт с именем, номером телефона и электронной почтой.
+    /// </summary>
+    public class Contact
     {
-        public string Name { get; set; } = string.Empty;
-        private string phoneNumber = string.Empty;
-        private string email = string.Empty;
+        /// <summary>
+        /// Имя контакта.
+        /// </summary>
+        public string Name { get; set; }
 
+        private string phoneNumber = "+7 999 123 45 67";
+        private string email = "tusur36@mail.ru";
 
+        /// <summary>
+        /// Номер телефона контакта.
+        /// </summary>
         public string PhoneNumber
         {
             get => phoneNumber;
             set
             {
-                if (!System.Text.RegularExpressions.Regex.IsMatch(value, @"^\+?[1-9]\d{1,14}$"))
-                {
-                    throw new ArgumentException("Invalid phone number format.");
-                }
                 phoneNumber = value;
             }
         }
 
+        /// <summary>
+        /// Электронная почта контакта.
+        /// </summary>
         public string Email
         {
             get => email;
             set
             {
-                try
-                {
-                    var addr = new System.Net.Mail.MailAddress(value);
-                    email = addr.Address;
-                }
-                catch
-                {
-                    throw new ArgumentException("Invalid email format.");
-                }
+                email = value;
             }
         }
 
+        /// <summary>
+        /// Создает экземпляр класса Contact с указанными данными.
+        /// </summary>
+        /// <param name="name">Имя контакта.</param>
+        /// <param name="phoneNumber">Номер телефона контакта.</param>
+        /// <param name="email">Электронная почта контакта.</param>
         public Contact(string name, string phoneNumber, string email)
         {
             Name = name;
