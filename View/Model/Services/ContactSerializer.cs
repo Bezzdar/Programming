@@ -17,7 +17,10 @@ namespace View.Model.Services
         /// <summary>
         /// Поле, содержащее путь к файлу JSON, где хранятся контакты.
         /// </summary>
-        private static readonly string _filePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "contacts.json");
+        private static readonly string _filePath =
+            Path.Combine(
+                Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
+                "contacts.json");
 
         /// <summary>
         /// Сохраняет объект Contact в JSON-файл.
@@ -48,7 +51,7 @@ namespace View.Model.Services
                 if (File.Exists(_filePath))
                 {
                     string json = File.ReadAllText(_filePath);
-                    return JsonConvert.DeserializeObject<Contact>(json) ?? new Contact(string.Empty, string.Empty, string.Empty);
+                    return JsonConvert.DeserializeObject<Contact>(json) ?? new Contact();
                 }
             }
             catch (Exception ex)

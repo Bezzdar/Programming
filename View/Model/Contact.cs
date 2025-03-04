@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace View.Model
 {
@@ -16,32 +17,16 @@ namespace View.Model
         /// </summary>
         public string Name { get; set; }
 
-        private string phoneNumber = "+7 999 123 45 67";
-        private string email = "tusur36@mail.ru";
-
         /// <summary>
         /// Номер телефона контакта.
         /// </summary>
-        public string PhoneNumber
-        {
-            get => phoneNumber;
-            set
-            {
-                phoneNumber = value;
-            }
-        }
+        public string PhoneNumber { get; set; } = "+7 999 123 45 67";
 
         /// <summary>
         /// Электронная почта контакта.
         /// </summary>
-        public string Email
-        {
-            get => email;
-            set
-            {
-                email = value;
-            }
-        }
+        public string Email { get; set; } = "tusur36@mail.ru";
+
 
         /// <summary>
         /// Создает экземпляр класса Contact с указанными данными.
@@ -54,6 +39,13 @@ namespace View.Model
             Name = name;
             PhoneNumber = phoneNumber;
             Email = email;
+        }
+
+        public Contact()
+        {
+            Name = string.Empty;
+            PhoneNumber = string.Empty;
+            Email = string.Empty;
         }
     }
 }
