@@ -1,61 +1,61 @@
-﻿using System.IO;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using Newtonsoft.Json;
 using View.Model;
 
-/// <summary>
-/// Статический класс для сериализации и десериализации контактов в JSON-файл.
-/// </summary>
-public static class ContactSerializer
+namespace View.Model.Services
 {
     /// <summary>
-    /// Полный путь к файлу, в котором хранятся контакты.
+    /// Класс для сериализации и десериализации контактов в JSON-файл.
     /// </summary>
-    private static string _filePath;
-
-    /// <summary>
-    /// Устанавливает путь к файлу по умолчанию и создаёт каталог, если он отсутствует.
-    /// </summary>
-    public static void CreateDirectory()
+    public static class ContactSerializer
     {
-        _filePath = Path.Combine(Environment.GetFolderPath
-                                (Environment.SpecialFolder.MyDocuments),
-                                "Contacts",
-                                "contacts.json");
-        var directory = Path.GetDirectoryName(_filePath);
-        if (!Directory.Exists(directory))
-        {
-            Directory.CreateDirectory(directory);
-        }
-    }
+        /// <summary>
+        /// Поле, содержащее путь к файлу JSON, где хранятся контакты.
+        /// </summary>
+        private static readonly string _filePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "contacts.json");
 
-    /// <summary>
-    /// Сериализует контакт и сохраняет его в файл.
-    /// </summary>
-    /// <param name="contact">Объект контакта для сохранения.</param>
-    public static void SaveContact(Contact contact)
-    {
-        if (contact == null)
+        /// <summary>
+        /// Сохраняет объект Contact в JSON-файл.
+        /// </summary>
+        /// <param name="contact">Объект контакта для сохранения.</param>
+        /// <exception cref="ArgumentException">Выбрасывается, если контакт пустой.</exception>
+        public static void SaveContact(Contact contact)
         {
-            throw new ArgumentNullException(nameof(contact), "Контакт не может быть null.");
+            try
+            {
+                string json = JsonConvert.SerializeObject(contact, Formatting.Indented);
+                File.WriteAllText(_filePath, json);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Ошибка при сохранении: {ex.Message}");
+            }
         }
 
-        CreateDirectory();
-        var json = JsonConvert.SerializeObject(contact, Formatting.Indented);
-        File.WriteAllText(_filePath, json);
-    }
-
-    /// <summary>
-    /// Загружает контакт из файла.
-    /// </summary>
-    /// <returns>Объект <see cref="Contact"/>, если файл существует, иначе null.</returns>
-    public static Contact LoadContact()
-    {
-        if (!File.Exists(_filePath))
+        /// <summary>
+        /// Загружает контакт из JSON-файла.
+        /// </summary>
+        /// <returns>Объект Contact, если файл существует; иначе null.</returns>
+        public static Contact LoadContact()
         {
-            return null;
+            try
+            {
+                if (File.Exists(_filePath))
+                {
+                    string json = File.ReadAllText(_filePath);
+                    return JsonConvert.DeserializeObject<Contact>(json) ?? new Contact(string.Empty, string.Empty, string.Empty);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Ошибка при загрузке: {ex.Message}");
+            }
+            return new Contact(string.Empty, string.Empty, string.Empty);
         }
-
-        var json = File.ReadAllText(_filePath);
-        return JsonConvert.DeserializeObject<Contact>(json);
     }
 }

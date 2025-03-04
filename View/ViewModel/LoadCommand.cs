@@ -2,18 +2,38 @@
 using System.IO;
 using System.Windows.Input;
 using View.Model;
+using View.Model.Services;
 
 namespace View.ViewModel
 {
     /// <summary>
-    /// Команда для загрузки данных контакта из файла.
+    /// Класс команды загрузки данных контакта из файла.
     /// </summary>
     public class LoadCommand : ICommand
     {
+
+        private readonly MainVM _viewModel;
+
+        public LoadCommand(MainVM viewModel)
+        {
+            _viewModel = viewModel;
+        }
         /// <summary>
-        /// Событие, которое вызывается при изменении состояния выполнения команды.
+        /// Событие, которое вызывается при изменении условий выполнения команды.
         /// </summary>
         public event EventHandler CanExecuteChanged;
+
+        /// <summary>
+        /// Выполняет команду загрузки контакта из файла "contact_save.txt".
+        /// </summary>
+        /// <param name="parameter">Параметр команды.</param>
+        public void Execute(object parameter)
+        {
+            Contact contact = ContactSerializer.LoadContact();
+            _viewModel.Name = contact.Name;
+            _viewModel.PhoneNumber = contact.PhoneNumber;
+            _viewModel.Email = contact.Email;
+        }
 
         /// <summary>
         /// Определяет, может ли команда выполняться.
@@ -25,29 +45,5 @@ namespace View.ViewModel
             return true;
         }
 
-        /// <summary>
-        /// Выполняет команду загрузки данных контакта из файла.
-        /// </summary>
-        /// <param name="parameter">Параметр команды.</param>
-        public void Execute(object parameter)
-        {
-            string filePath = "contact_save.txt";
-            if (File.Exists(filePath))
-            {
-                try
-                {
-                    string[] data = File.ReadAllLines(filePath);
-                    if (data.Length >= 3)
-                    {
-                        Contact loadedContact = new Contact(data[0], data[1], data[2]);
-                        Console.WriteLine($"Загруженные данные: {loadedContact.Name}, {loadedContact.PhoneNumber}, {loadedContact.Email}");
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine($"Ошибка загрузки: {ex.Message}");
-                }
-            }
-        }
     }
 }
