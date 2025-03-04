@@ -1,28 +1,54 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Input;
 using View.Model;
 
 namespace View.ViewModel
 {
     /// <summary>
-    /// Представляет модель представления (ViewModel) для управления контактными данными.
+    /// Главная модель управления контактом (ViewModel).
     /// </summary>
     public class MainVM : INotifyPropertyChanged
     {
+        /// <summary>
+        /// Приватное поле контакта.
+        /// </summary>
         private Contact _contact;
 
         /// <summary>
-        /// Инициализирует новый экземпляр класса MainVM.
+        /// Конструктор класса MainVM.
+        /// Инициализирует объект Contact с пустыми значениями.
         /// </summary>
         public MainVM()
         {
             _contact = new Contact(string.Empty, string.Empty, string.Empty);
+            SaveCommand = new SaveCommand(this);
+            LoadCommand = new LoadCommand(this);
         }
 
+        /// <summary>
+        /// Команда сохранения данных.
+        /// </summary>
+        public ICommand SaveCommand { get; }
+
+        /// <summary>
+        /// Команда загрузки данных.
+        /// </summary>
+        public ICommand LoadCommand { get; }
+
+
+        /// <summary>
+        /// Событие, уведомляющее об изменении свойства.
+        /// </summary>
         public event PropertyChangedEventHandler? PropertyChanged;
 
         /// <summary>
-        /// Вызывает событие PropertyChanged при изменении свойства.
+        /// Метод, вызывающий событие PropertyChanged при изменении свойства.
         /// </summary>
         /// <param name="propertyName">Имя измененного свойства.</param>
         protected void OnPropertyChanged([CallerMemberName] string propertyName = "")
@@ -30,9 +56,12 @@ namespace View.ViewModel
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
+        /// <summary>
+        /// Свойство имени контакта.
+        /// </summary>
         public string Name
         {
-            get => _contact.Name;
+            get { return _contact.Name; }
             set
             {
                 if (_contact.Name != value)
@@ -43,9 +72,12 @@ namespace View.ViewModel
             }
         }
 
+        /// <summary>
+        /// Свойство номера телефона контакта.
+        /// </summary>
         public string PhoneNumber
         {
-            get => _contact.PhoneNumber;
+            get { return _contact.PhoneNumber; }
             set
             {
                 if (_contact.PhoneNumber != value)
@@ -56,9 +88,12 @@ namespace View.ViewModel
             }
         }
 
+        /// <summary>
+        /// Свойство электронной почты контакта.
+        /// </summary>
         public string Email
         {
-            get => _contact.Email;
+            get { return _contact.Email; }
             set
             {
                 if (_contact.Email != value)
@@ -70,5 +105,3 @@ namespace View.ViewModel
         }
     }
 }
-
-
