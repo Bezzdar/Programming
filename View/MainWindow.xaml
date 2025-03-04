@@ -27,27 +27,14 @@
 
         <GroupBox Header="Read Contact" Grid.Column="1" Margin="3,0,0,30">
             <StackPanel>
-                <TextBlock TextWrapping="Wrap" Text="Name:" Width="217" />
-                <TextBlock Text="{Binding Name}" FontWeight="Bold" Height="17" Width="217" Margin="0 3 0 3"/>
+                <TextBlock TextWrapping="Wrap" Text="Name:" />
+                <TextBlock Text="{Binding Name}" FontWeight="Bold" Height="17"  Margin="0 3 0 3"/>
                 
-                <TextBlock TextWrapping="Wrap" Text="Phone number:" Width="217" />
-                <TextBlock Text="{Binding PhoneNumber}" FontWeight="Bold" Height="17" Width="217" Margin="0 3 0 3"/>
+                <TextBlock TextWrapping="Wrap" Text="Phone number:"  />
+                <TextBlock Text="{Binding PhoneNumber}" FontWeight="Bold" Height="17" HorizontalAlignment="Left" Margin="0 3 0 3"/>
                 
-                <TextBlock TextWrapping="Wrap" Text="Email:" Width="217"/>
-                <TextBlock Text="{Binding Email}" FontWeight="Bold" Height="17" Width="217" Margin="0 3 0 3"/>
-
-
-
-
-
-
-
-
-
-
-
-
-
+                <TextBlock TextWrapping="Wrap" Text="Email:" />
+                <TextBlock Text="{Binding Email}" FontWeight="Bold" Height="17"  Margin="0 3 0 3"/>
             </StackPanel>
         </GroupBox>
 
