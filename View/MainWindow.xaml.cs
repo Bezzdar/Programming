@@ -10,16 +10,16 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using View.ViewModel;
 
-namespace View;
-
-/// <summary>
-/// Interaction logic for MainWindow.xaml
-/// </summary>
-public partial class MainWindow : Window
+namespace Contacts
 {
-    public MainWindow()
+    /// <summary>
+    /// Interaction logic for MainWindow.xaml
+    /// </summary>
+    public partial class MainWindow : Window
     {
-        InitializeComponent();
-        DataContext = new MainVM();
+        public MainWindow()
+        {
+            InitializeComponent();
+        }
     }
 }
