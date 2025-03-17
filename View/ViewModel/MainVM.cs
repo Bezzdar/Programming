@@ -1,107 +1,275 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
 using View.Model;
+using View.Model.Enums;
+using View.Model.Services;
 
 namespace View.ViewModel
 {
     /// <summary>
-    /// Главная модель управления контактом (ViewModel).
+    /// ViewModel для главного окна приложения, отвечает за взаимодействие между View и Model.
     /// </summary>
-    public class MainVM : INotifyPropertyChanged
+    internal class MainVM : INotifyPropertyChanged
     {
         /// <summary>
-        /// Приватное поле контакта.
+        /// Модель контакта, данные которой отображаются и редактируются в View.
         /// </summary>
-        private Contact _contact;
+        private Contact? _selectedContact { get; set; }
 
         /// <summary>
-        /// Конструктор класса MainVM.
-        /// Инициализирует объект Contact с пустыми значениями.
+        /// Временный экземпляр контакта для восстановления.
+        /// На случай, если пользователь прервёт редактирование.
         /// </summary>
-        public MainVM()
-        {
-            _contact = new Contact(string.Empty, string.Empty, string.Empty);
-            SaveCommand = new SaveCommand(this);
-            LoadCommand = new LoadCommand(this);
-        }
+        private Contact _temporaryContact { get; set; }
 
         /// <summary>
-        /// Команда сохранения данных.
+        /// Состояние приложения.
         /// </summary>
-        public ICommand SaveCommand { get; }
+        private State _state = State.Reading;
 
         /// <summary>
-        /// Команда загрузки данных.
+        /// Список контактов.
         /// </summary>
-        public ICommand LoadCommand { get; }
-
+        public ObservableCollection<Contact> Contacts { get; set; } = new ObservableCollection<Contact>();
 
         /// <summary>
-        /// Событие, уведомляющее об изменении свойства.
+        /// Команда для добавления контакта.
+        /// </summary>
+        public RelayCommand AddContactCommand { get; }
+
+        /// <summary>
+        /// Команда для редактирования контакта.
+        /// </summary>
+        public RelayCommand EditContactCommand { get; }
+
+        /// <summary>
+        /// Команда для подтверждения действия.
+        /// </summary>
+        public RelayCommand ApplyCommand { get; }
+
+        /// <summary>
+        /// Команда для удаления контакта.
+        /// </summary>
+        public RelayCommand RemoveContactCommand { get; }
+
+        /// <summary>
+        /// Команда для сохранения данных контакта в файл.
+        /// </summary>
+        public RelayCommand SaveCommand { get; }
+
+        /// <summary>
+        /// Событие, которое необходимо вызвать для уведомления View об изменениях свойств ViewModel.
         /// </summary>
         public event PropertyChangedEventHandler? PropertyChanged;
 
         /// <summary>
-        /// Метод, вызывающий событие PropertyChanged при изменении свойства.
+        /// Состояние приложения.
         /// </summary>
-        /// <param name="propertyName">Имя измененного свойства.</param>
-        protected void OnPropertyChanged([CallerMemberName] string propertyName = "")
+        private State State
+        {
+            get { return _state; }
+            set
+            {
+                if (_state == value) return;
+
+                _state = value;
+                NotifyPropertyChanged(nameof(IsReadOnlyContactTextBoxes));
+                NotifyPropertyChanged(nameof(IsApplyVisible));
+                EditContactCommand.RaiseCanExecuteChanged();
+                AddContactCommand.RaiseCanExecuteChanged();
+                RemoveContactCommand.RaiseCanExecuteChanged();
+            }
+        }
+
+        /// <summary>
+        /// Имя контакта, связанное с соответствующим полем в View.
+        /// </summary>
+        public string Name
+        {
+            get { return SelectedContact != null ? SelectedContact.Name : ""; }
+            set
+            {
+                if (SelectedContact != null && SelectedContact.Name != value)
+                {
+                    SelectedContact.Name = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Номер телефона контакта, связанный с соответствующим полем в View.
+        /// </summary>
+        public string PhoneNumber
+        {
+            get { return SelectedContact != null ? SelectedContact.PhoneNumber : ""; }
+            set
+            {
+                if (SelectedContact != null && SelectedContact.PhoneNumber != value)
+                {
+                    SelectedContact.PhoneNumber = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Адрес электронной почты контакта, связанный с соответствующим полем в View.
+        /// </summary>
+        public string Email
+        {
+            get { return SelectedContact != null ? SelectedContact.Email : ""; }
+            set
+            {
+                if (SelectedContact != null && SelectedContact.Email != value)
+                {
+                    SelectedContact.Email = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Доступны ли текстовые поля редактирования контакта только для чтения.
+        /// </summary>
+        public bool IsReadOnlyContactTextBoxes
+        {
+            get
+            {
+                return State == State.Reading ? true : false;
+            }
+        }
+
+        /// <summary>
+        /// Определяет, доступна ли кнопка добавления контакта.
+        /// </summary>
+        public bool CanAddContact
+        {
+            get
+            {
+                return State == State.Reading;
+            }
+        }
+
+        /// <summary>
+        /// Определяет, доступна ли кнопка редактирования контакта.
+        /// </summary>
+        public bool CanEditContact
+        {
+            get
+            {
+                return _selectedContact != null && State == State.Reading;
+            }
+        }
+
+        /// <summary>
+        /// Определяет, доступна ли кнопка удаления контакта.
+        /// </summary>
+        public bool CanRemoveContact
+        {
+            get
+            {
+                return _selectedContact != null && State == State.Reading;
+            }
+        }
+
+        /// <summary>
+        /// Доступность кнопки Apply.
+        /// </summary>
+        public bool IsApplyVisible
+        {
+            get => State != State.Reading;
+        }
+
+        /// <summary>
+        /// Выбранный контакт.
+        /// </summary>
+        public Contact? SelectedContact
+        {
+            get { return _selectedContact; }
+            set
+            {
+                if (State == State.Editing && SelectedContact != null)
+                {
+                    _temporaryContact.CopyValues(SelectedContact);
+                }
+                if (value != _selectedContact)
+                {
+                    State = State.Reading;
+                    _selectedContact = value;
+                    NotifyPropertyChanged("");
+                    EditContactCommand.RaiseCanExecuteChanged();
+                    RemoveContactCommand.RaiseCanExecuteChanged();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Метод для уведомления View об изменении значения свойства.
+        /// </summary>
+        /// <param name="propertyName">Имя изменившегося свойства 
+        /// (автоматически подставляется компилятором).</param>
+        private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
         /// <summary>
-        /// Свойство имени контакта.
+        /// Конструктор класса.
         /// </summary>
-        public string Name
+        public MainVM()
         {
-            get { return _contact.Name; }
-            set
-            {
-                if (_contact.Name != value)
-                {
-                    _contact.Name = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
+            Contacts = ContactSerializer.Load();
+            NotifyPropertyChanged("");
 
-        /// <summary>
-        /// Свойство номера телефона контакта.
-        /// </summary>
-        public string PhoneNumber
-        {
-            get { return _contact.PhoneNumber; }
-            set
-            {
-                if (_contact.PhoneNumber != value)
-                {
-                    _contact.PhoneNumber = value;
-                    OnPropertyChanged();
+            AddContactCommand = new RelayCommand(
+                _ => {
+                    SelectedContact = null;
+                    SelectedContact = new Contact();
+                    State = State.Adding;
+                },
+                _ => CanAddContact
+            );
+            EditContactCommand = new RelayCommand(
+                _ => {
+                    if (SelectedContact == null) return;
+                    _temporaryContact = SelectedContact.Clone();
+                    State = State.Editing;
+                },
+                _ => CanEditContact
+            );
+            ApplyCommand = new RelayCommand(
+                _ => {
+                    if (SelectedContact == null) return;
+                    if (State == State.Adding) Contacts.Add(SelectedContact);
+                    State = State.Reading;
                 }
-            }
-        }
+            );
+            RemoveContactCommand = new RelayCommand(
+                _ => {
+                    if (SelectedContact == null) return;
 
-        /// <summary>
-        /// Свойство электронной почты контакта.
-        /// </summary>
-        public string Email
-        {
-            get { return _contact.Email; }
-            set
+                    int currentIndex = Contacts.IndexOf(SelectedContact);
+                    Contacts.Remove(SelectedContact);
+
+                    if (Contacts.Count == 0)
+                    {
+                        SelectedContact = null;
+                    }
+                    else
+                    {
+                        int newIndex = Math.Min(currentIndex, Contacts.Count - 1);
+                        SelectedContact = Contacts[newIndex];
+                    }
+                },
+                _ => CanRemoveContact
+            );
+
+            SaveCommand = new RelayCommand(_ =>
             {
-                if (_contact.Email != value)
-                {
-                    _contact.Email = value;
-                    OnPropertyChanged();
-                }
-            }
+                ContactSerializer.Save(Contacts);
+            });
         }
     }
 }
