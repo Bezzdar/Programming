@@ -1,13 +1,13 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using View.Model.Services;
+using System.Text.RegularExpressions;
 
 namespace View.Model
 {
     /// <summary>
     /// Класс, представляющий контакт.
     /// </summary>
-    internal class Contact : INotifyPropertyChanged
+    internal class Contact : INotifyPropertyChanged, IDataErrorInfo
     {
         /// <summary>
         /// Имя.
@@ -34,10 +34,9 @@ namespace View.Model
         /// </summary>
         public string Name
         {
-            get { return _name; }
+            get => _name;
             set
             {
-                ValueValidator.AssertStringOnLength(value, 200, nameof(Name));
                 _name = value;
                 NotifyPropertyChanged();
             }
@@ -48,10 +47,9 @@ namespace View.Model
         /// </summary>
         public string PhoneNumber
         {
-            get { return _phoneNumber; }
+            get => _phoneNumber;
             set
             {
-                ValueValidator.AssertStringOnLength(value, 25, nameof(PhoneNumber));
                 _phoneNumber = value;
                 NotifyPropertyChanged();
             }
@@ -62,10 +60,9 @@ namespace View.Model
         /// </summary>
         public string Email
         {
-            get { return _email; }
+            get => _email;
             set
             {
-                ValueValidator.AssertStringOnLength(value, 200, nameof(Email));
                 _email = value;
                 NotifyPropertyChanged();
             }
@@ -119,14 +116,78 @@ namespace View.Model
         /// Получить клон экземпляра класса.
         /// </summary>
         /// <returns>Новый экземпляр класса.</returns>
-        public Contact Clone()
+        public Contact Clone() => (Contact)MemberwiseClone();
+
+        /// <summary>
+        /// Индексатор, позволяющий обращаться к экземпляру класса как к массиву или словарю,
+        /// используя ключ.
+        /// </summary>
+        /// <param name="propertyName"></param>
+        /// <returns></returns>
+        public string this[string propertyName]
         {
-            return (Contact)MemberwiseClone();
+            get
+            {
+                string error = string.Empty;
+                switch (propertyName)
+                {
+                    case nameof(Name):
+                        if (string.IsNullOrWhiteSpace(Name))
+                        {
+                            error = "Имя обязательно для заполнения.";
+                        }
+                        else if (Name.Length > 100)
+                        {
+                            error = "Имя не может превышать 100 символов.";
+                        }
+
+                        break;
+                    case nameof(PhoneNumber):
+                        if (string.IsNullOrEmpty(PhoneNumber))
+                        {
+                            error = "Номер телефона обязателен для заполнения.";
+                        }
+                        else if (PhoneNumber.Length > 100)
+                        {
+                            error = "Номер телефона не может превышать 100 символов.";
+                        }
+                        else if (!Regex.IsMatch(PhoneNumber, @"^[0-9+\-\(\) ]*$"))
+                        {
+                            error = "Номер телефона может содержать только цифры и символы \"+-()\".";
+                        }
+
+                        break;
+                    case nameof(Email):
+                        if (string.IsNullOrWhiteSpace(Email))
+                        {
+                            error = "Электронная почта обязательна для заполнения.";
+                        }
+                        else if (Email.Length > 100)
+                        {
+                            error = "Электронная почта не может превышать 100 символов.";
+                        }
+                        else if (!Email.Contains("@"))
+                        {
+                            error = "Текст не соответствует формату электронной почты.";
+                        }
+
+                        break;
+                }
+                return error;
+            }
         }
 
-        public override string ToString()
+        /// <summary>
+        /// Проверка на наличие ошибок.
+        /// </summary>
+        /// <param name="contact"></param>
+        /// <returns></returns>
+        public bool HasErrors()
         {
-            return Name;
+            return typeof(Contact).GetProperties()
+                .Any(prop => !string.IsNullOrEmpty(this[prop.Name]));
         }
+
+        public string Error => String.Empty;
     }
 }
