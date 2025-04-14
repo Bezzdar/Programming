@@ -194,6 +194,10 @@ namespace View.ViewModel
                 {
                     _temporaryContact.CopyValues(SelectedContact);
                 }
+
+                if (_selectedContact != null)
+                    _selectedContact.PropertyChanged -= SelectedContact_PropertyChanged;
+
                 if (value != _selectedContact)
                 {
                     State = State.Reading;
@@ -201,8 +205,20 @@ namespace View.ViewModel
                     NotifyPropertyChanged("");
                     EditContactCommand.RaiseCanExecuteChanged();
                     RemoveContactCommand.RaiseCanExecuteChanged();
+
+                    if (_selectedContact != null)
+                        _selectedContact.PropertyChanged += SelectedContact_PropertyChanged;
+                    ApplyCommand.RaiseCanExecuteChanged();
                 }
             }
+        }
+
+        /// <summary>
+        /// Обработчик изменения свойств в SelectedContact.
+        /// </summary>
+        private void SelectedContact_PropertyChanged(object? sender, PropertyChangedEventArgs e)
+        {
+            ApplyCommand.RaiseCanExecuteChanged();
         }
 
         /// <summary>
@@ -244,7 +260,8 @@ namespace View.ViewModel
                     if (SelectedContact == null) return;
                     if (State == State.Adding) Contacts.Add(SelectedContact);
                     State = State.Reading;
-                }
+                },
+                _ => SelectedContact != null && !SelectedContact.HasErrors()
             );
             RemoveContactCommand = new RelayCommand(
                 _ => {
