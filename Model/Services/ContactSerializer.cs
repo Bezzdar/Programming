@@ -1,22 +1,21 @@
 ﻿using System.Collections.ObjectModel;
 using System.IO;
+using System.Xml;
 using Newtonsoft.Json;
+using Model;
 
-namespace View.Model.Services
+namespace Model.Services
 {
     /// <summary>
-    /// Класс, предаставляющий методы для работы с памятью и сериализацией данных.
+    /// Класс для сериализации и десериализации контактов в JSON-файл.
     /// </summary>
-    internal static class ContactSerializer
+    public static class ContactSerializer
     {
-        /// <summary>
-        /// Настройки сериализатора.
-        /// </summary>
         private static JsonSerializerSettings Settings { get; } = new JsonSerializerSettings
         {
             PreserveReferencesHandling = PreserveReferencesHandling.Objects,
             TypeNameHandling = TypeNameHandling.All,
-            Formatting = Formatting.Indented
+            Formatting = Newtonsoft.Json.Formatting.Indented
         };
 
         /// <summary>
@@ -32,7 +31,7 @@ namespace View.Model.Services
         public static void Save(ObservableCollection<Contact> contact)
         {
             File.WriteAllText(AppFolderPath + @"\contacts.json",
-                JsonConvert.SerializeObject(contact, Formatting.Indented, Settings));
+                JsonConvert.SerializeObject(contact, Newtonsoft.Json.Formatting.Indented, Settings));
         }
 
         /// <summary>
